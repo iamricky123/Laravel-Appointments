@@ -13,7 +13,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
                         <h1>{{ trans('panel.site_title') }}</h1>
-                        <p class="text-muted">{{ trans('global.login') }}</p>
+                        <pre class="text-muted">{{ trans('global.login') }}                                                                         (3 Max Attempts)</pre>
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -40,6 +40,21 @@
                                 </div>
                             @endif
                         </div>
+						
+						
+						<div class="form-group mt-4 mb-4">
+						<label for="captcha" class="text-md-right">{{ __('Captcha') }}</label>
+							<div class="captcha">
+								<span>{!! captcha_img() !!}</span>
+								<button type="button" class="btn btn-danger" class="reload" id="reload">
+									&#x21bb;
+								</button>
+							</div>
+						</div>
+
+						<div class="form-group mb-4">
+							<input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+						</div>
 
                         <div class="input-group mb-4">
                             <div class="form-check checkbox">
@@ -60,7 +75,6 @@
                                 <a class="btn btn-link px-0" href="{{ route('password.request') }}">
                                     {{ trans('global.forgot_password') }}
                                 </a>
-
                             </div>
                         </div>
                     </form>

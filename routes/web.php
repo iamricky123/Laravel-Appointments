@@ -4,6 +4,11 @@ Route::redirect('/', '/login');
 Route::redirect('/home', '/admin');
 Auth::routes(['register' => false]);
 
+//Captcha route
+Route::get('contact-form', 'CaptchaServiceController@index');
+Route::post('captcha-validation', 'CaptchaServiceController@capthcaFormValidate');
+Route::get('reload-captcha', 'CaptchaServiceController@reloadCaptcha');
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions

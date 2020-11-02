@@ -1,29 +1,11 @@
 <?php
 
-namespace Database\Factories;
-
 use App\Service;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as Faker;
 
-class ServiceFactory extends Factory
-{
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Service::class;
-
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
-    {
-        return [
-            'name' => $this->faker->word,
-            'price' => rand(10, 99),
-        ];
-    }
-}
+$factory->define(Service::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word,
+        'price' => rand(10, 99),
+    ];
+});
