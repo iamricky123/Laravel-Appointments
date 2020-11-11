@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route("admin.users.store") }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route("admin.users.store") }}" method="POST" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                 <label for="name">{{ trans('cruds.user.fields.name') }}*</label>
@@ -63,12 +63,11 @@
                     {{ trans('cruds.user.fields.roles_helper') }}
                 </p>
             </div>
+
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>
         </form>
-
-
     </div>
 </div>
 @endsection

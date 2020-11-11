@@ -10,7 +10,7 @@
                             {{ \Session::get('message') }}
                         </p>
                     @endif
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" autocomplete="off">
                         {{ csrf_field() }}
                         <h1>{{ trans('panel.site_title') }}</h1>
                         <pre class="text-muted">{{ trans('global.login') }}                                                                         (3 Max Attempts)</pre>
@@ -43,7 +43,7 @@
 						
 						
 						<div class="form-group mt-4 mb-4">
-						<label for="captcha" class="text-md-right">{{ __('Captcha') }}</label>
+						    <label for="captcha" class="text-md-right">{{ __('Captcha') }}</label>
 							<div class="captcha">
 								<span>{!! captcha_img() !!}</span>
 								<button type="button" class="btn btn-danger" class="reload" id="reload">
@@ -53,7 +53,13 @@
 						</div>
 
 						<div class="form-group mb-4">
-							<input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+							<input id="captcha" type="text" class="form-control @error('captcha') is-invalid @enderror" placeholder="Enter Captcha" name="captcha">
+
+                            @error('captcha')
+                            <span class="invalid-feedback" role="alert">
+                                <strong> <p>Captcha entered is invalid.</p> </strong>
+                            </span>
+                            @enderror
 						</div>
 
                         <div class="input-group mb-4">
